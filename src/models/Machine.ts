@@ -4,4 +4,5 @@ export interface Machine{
     ip: string;
     status: 'online' | 'offline';
     lastUpdated: string;
+    
 }
