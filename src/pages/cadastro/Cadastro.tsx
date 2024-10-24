@@ -42,7 +42,7 @@ function Cadastro() {
 
   async function cadastrarNovoUsuario(e:FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    alert(e)
+    
     if(confirmaSenha === username.password && username.password.length >= 8){
       setIsLoading(true)
 
@@ -64,10 +64,7 @@ function Cadastro() {
     setIsLoading(false)
   }
 
-  console.log(username)
-  console.log(confirmaSenha)
   
-
   return (
       <div className="grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center font-bold">
         <div className=''>

@@ -9,12 +9,15 @@ function Home() {
 
   const { usuario } = useContext(AuthContext)
 
+
   useEffect(() => {
       if (usuario.token === "") {
           ToastAlerta('Você precisa estar logado', 'info')
           navigate("/")
       }
   }, [usuario.token])
+
+  
   return (
     <>
     <div className="bg-indigo-900 flex justify-center p-5">

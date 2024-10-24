@@ -13,25 +13,28 @@ import { AuthProvider } from './contexts/AuthContext'
 import Cadastro from './pages/cadastro/Cadastro';
 import Navbar from './components/navbar/Navbar';
 import CadMaquina from './components/maquinas/cadmaquina/CadMaquina';
+import TerminalComponent from './pages/comandos/TerminalComponent';
+
 
 function App() {
  
 
   return (
     <>
-    <AuthProvider>
-      <ToastContainer />
-      <BrowserRouter>
-        <Navbar/>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element = {<Login/>}/>
-          <Route path="/cadastrar" element = {<Cadastro/>}/>
-          <Route path="/centralcontrole" element = {<CadMaquina/>}/>
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+      <AuthProvider>
+        <ToastContainer />
+        <BrowserRouter>
+          <Navbar/>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element = {<Login/>}/>
+            <Route path="/cadastrar" element = {<Cadastro/>}/>
+            <Route path="/centralcontrole" element = {<CadMaquina/>}/>
+            <Route path="/terminal" element = {<TerminalComponent/>}></Route>
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react"
+import { createContext, ReactNode, useEffect, useState } from "react"
 import UsuarioLogin from "../models/UsuarioLogin"
 import React from 'react';
 import { ToastAlerta } from "../utils/ToastAlerta"
@@ -23,22 +23,22 @@ export const AuthContext = createContext({} as AuthContextProps)
 export function AuthProvider({ children }: AuthProviderProps) {
 
     const [usuario, setUsuario] = useState<UsuarioLogin>({
-        id: 0,
+        id: "",
         name: "",
-        usuario: "",
-        senha: "",
-        token: ""
+        password: "",
+        token: "",
+        username: ""
     })
 
     const [isLoading, setIsLoading] = useState(false);
 
     async function handleLogin(usuarioLogin: UsuarioLogin){
         setIsLoading(true)
-
         try {
             await authenticateUser(`/auth/login`, usuarioLogin, setUsuario)
             ToastAlerta("Usuário autenticado com sucesso!", "sucesso")
         } catch (error) {
+            console.log(error)
             ToastAlerta("Os dados do usuário estão incosistentes!", "erro")
         }
 
@@ -48,11 +48,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     function handleLogout(){
         setUsuario({
-            id: 0,
+            id: "",
             name: "",
-            usuario: "",
-            senha: "",
-            token: ""
+            password: "",
+            token: "",
+            username: ""
         })
     }
 
