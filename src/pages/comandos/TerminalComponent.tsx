@@ -9,7 +9,8 @@ import { RotatingLines } from 'react-loader-spinner';
 function TerminalComponent() {
     const navigate = useNavigate();
     const { usuario } = useContext(AuthContext);
-    const token = usuario.token;
+    const token = "Bearer " + usuario.token;
+    let [resposta, setResposta] = useState<String>("");
 
     useEffect(() => {
         if (!usuario || token === "") {
@@ -17,11 +18,11 @@ function TerminalComponent() {
             navigate("/");
         }
     }, [usuario.token]);
-    console.log(token)
+    
 
     const [commands, setCommands] = useState<Commands>({
         machine_id: "bd356735-8fbf-49aa-83b4-56a79e7d031e",
-        action: ""
+        action: "cmd: "
     });
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -42,17 +43,18 @@ function TerminalComponent() {
 
         setIsLoading(true);
 
-        if(!token){
-            ToastAlerta('Token invalido!', 'error');
-        }
+        console.log(token)
         try {
-            await CommandsService('/send-command', commands, setCommands, {
+            const respostaRecebida = await CommandsService('/send-command', commands, setCommands,{
                 headers: {
                     Authorization: token,
                 },
             });
+            
+            setResposta(respostaRecebida);
             ToastAlerta('Comando enviado com sucesso!', 'sucesso');
         } catch (error: any) {
+            console.log(error)
             ToastAlerta('Erro ao enviar comando!', 'erro');
         }
         setIsLoading(false);
@@ -95,6 +97,9 @@ function TerminalComponent() {
             </div>
             <a href="../"></a>
         </form>
+            <div className='flex bg-slate-950 text-white items-center justify-center'>
+                <p className='w-2/4'>{`${resposta}`}</p>
+            </div>
         </div> 
     );
 }

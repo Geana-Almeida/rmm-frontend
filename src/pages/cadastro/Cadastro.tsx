@@ -109,6 +109,7 @@ function Cadastro() {
               value={username.password}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
+            <p className='text-xs text-slate-400'>A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um caractere especial.</p>
           </div>
 
           <div className='flex flex-col w-full'>
