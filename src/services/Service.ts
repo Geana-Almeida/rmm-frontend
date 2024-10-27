@@ -28,15 +28,6 @@ export const CommandsService = async (url: string, dados: any, setDados: Functio
     const responseData = resposta.data.response; // ajuste conforme a estrutura da sua resposta
     return resposta.data.response;
 }
-export const CommandsService = async (
-  url: string,
-  dados: any,
-  setDados: Function,
-  header: Object,
-) => {
-  const resposta = await api.post(url, dados, header);
-  setDados(resposta.data);
-};
 
 export const getAllMachines = async (token: string): Promise<Machine[]> => {
   const response = await api.get("/machines", {
