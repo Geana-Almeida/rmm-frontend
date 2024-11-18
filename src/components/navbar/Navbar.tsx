@@ -1,6 +1,7 @@
 import React, { ReactNode, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import AuthContext from '../../contexts/AuthContext';
+import { SignOut } from '@phosphor-icons/react';
 
 function Navbar() {
     const navigate = useNavigate();
@@ -33,7 +34,7 @@ function Navbar() {
                             <Link to='/centralcontrole' className="hover:underline">Central de controle</Link>
                             </p>
                             <p className="mr-5">
-                            <Link to='' onClick={logout} className="hover:underline">Sair</Link>
+                            <Link to='' onClick={logout} className="hover:underline"><SignOut size={25} /></Link>
                             </p>
                         </div>
                     </div>
